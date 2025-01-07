@@ -10,11 +10,11 @@ class NoteDatabaseHelper(context: Context) :SQLiteOpenHelper(context,DATABASE_NA
 //    companion object is a way to define static-like members within a class.
     companion object{
         private const val  DATABASE_NAME="notes.db"
-        private const val   DATABASE_VERSION=
+        private const val   DATABASE_VERSION=1
         private const val  TABLE_NAME="allnotes"
     private const val  COLOUMN_ID="id"
     private const val  COLOUMN_TITLE="title"
-    private const val  COOUMN_CONTENT="content"
+    private const val  COLUMN_CONTENT="content"
 
 
     }
@@ -35,7 +35,7 @@ class NoteDatabaseHelper(context: Context) :SQLiteOpenHelper(context,DATABASE_NA
         val db= writableDatabase
         val values=ContentValues().apply {
           put(COLOUMN_TITLE,note.title)
-            put(COOUMN_CONTENT,note.content)
+            put(COLUMN_CONTENT,note.content)
         }
         db.insert(TABLE_NAME,null,values)
         db.close()

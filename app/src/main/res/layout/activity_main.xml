@@ -19,7 +19,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:Tint="white"
+        app:tint="@color/white"
         app:backgroundTint="@color/orange"
         tools:srcCompat="@drawable/baseline_add_24" />
 </RelativeLayout>
