@@ -58,4 +58,28 @@ class NoteDatabaseHelper(context: Context) :SQLiteOpenHelper(context,DATABASE_NA
         db.close()
         return noteList
     }
+    fun updateNote(note:Note){
+        val db=writableDatabase
+        val values=ContentValues().apply{
+            put(COLOUMN_TITLE,note.title)
+            put(COLUMN_CONTENT,note.content)
+        }
+        val whereclause="$COLOUMN_ID =?"
+        val whereArgs=arrayOf(note.id.toString())
+        db.update(TABLE_NAME,values,whereclause,whereArgs)
+        db.close()
+
+    }
+    fun getNoteById(noteID:Int):Note{
+        val db=readableDatabase
+        val query="SELECT * FROM $TABLE_NAME WHERE $COLOUMN_ID=$noteID"
+        val cursor=db.rawQuery(query,null)
+        cursor.moveToFirst()
+        val id=cursor.getInt(cursor.getColumnIndexOrThrow(COLOUMN_ID))
+        val title=cursor.getString(cursor.getColumnIndexOrThrow(COLOUMN_TITLE))
+        val content=cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+        cursor.close()
+        db.close()
+        return Note(id,title,content)
+    }
 }
