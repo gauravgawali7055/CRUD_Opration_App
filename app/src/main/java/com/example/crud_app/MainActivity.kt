@@ -18,14 +18,14 @@ class MainActivity : AppCompatActivity() {
 
         db = NoteDatabaseHelper(this)
 
-        // Initialize RecyclerView adapter with notes
-        notesAdapter = NoteAdapter(db.getAllNotes() ?: emptyList())
+        // Initialize RecyclerView adapter with notes and context
+        notesAdapter = NoteAdapter(db.getAllNotes() ?: emptyList(), this)
         binding.notdRecyclerview.layoutManager = LinearLayoutManager(this)
         binding.notdRecyclerview.adapter = notesAdapter
 
         // Set OnClickListener for FloatingActionButton
         binding.addButton.setOnClickListener {
-            val intent = Intent(this, Add_Note_Activity::class.java)
+            val intent = Intent(this, Add_Note_Activity::class.java) // Ensure AddNoteActivity is correctly named
             startActivity(intent)
         }
     }
